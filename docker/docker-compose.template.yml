@@ -1,0 +1,53 @@
+version: "3.7"
+services:
+  redis:
+    image: redis
+    ports:
+      - "22379:6379"
+    environment:
+      - TZ=Asia/Shanghai
+      - LANG=en_US.UTF-8
+    command: redis-server --requirepass {{redis-root-password}}
+    networks:
+      backend:
+        ipv4_address: 10.233.234.2
+
+  mysql:
+    image: mysql:8.0
+    ports:
+      - "22306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: {{mysql-root-password}}
+      MYSQL_DATABASE: backend
+      MYSQL_USER: madmin
+      MYSQL_PASSWORD: {{mysql-norm-password}}
+    volumes:
+      - {{conf-path}}:/etc/mysql/conf.d
+      - {{logs-path}}:/logs
+      - {{data-path}}:/var/lib/mysql
+    networks:
+      backend:
+        ipv4_address: 10.233.234.3
+    command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
+  # server:
+  #   image: {{node-name}}
+  #   volumes:
+  #     - {{config-file}}:{{config-file-target}}
+  #     - {{goods-picture-path}}:{{goods-picture-path-target}}
+  #     - {{needs-picture-path}}:{{needs-picture-path-target}}
+  #   depends_on:
+  #     - redis
+  #     - mysql
+  #   ports:
+  #     - "{{target-port}}:23336"
+  #   networks:
+  #     backend:
+  #       ipv4_address: 10.233.234.4
+
+
+networks:
+  backend:
+    ipam:
+      driver: default
+      config:
+        - subnet: "10.233.234.0/24"

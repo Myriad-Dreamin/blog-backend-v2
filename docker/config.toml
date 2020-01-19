@@ -1,0 +1,13 @@
+# do not push it to your repo!
+[database]
+connection-type="mysql"
+user-name="madmin"
+password="12345678"
+host="localhost:23306"
+database-name="backend"
+charset="utf8mb4"
+parse-time=true
+max-idle=100
+max-active=100
+escaper="`"
+location="Local"
