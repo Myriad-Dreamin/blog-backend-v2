@@ -1,0 +1,5 @@
+{
+    "conf-path": "/opt/mysql/conf",
+    "logs-path": "/opt/mysql/logs",
+    "data-path": "/opt/mysql/data"
+}

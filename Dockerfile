@@ -13,7 +13,7 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositorie
 WORKDIR /
 RUN apk add -U tzdata
 RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai  /etc/localtime
-COPY backend /usr/local/bin/server
+COPY minimum-template /usr/local/bin/server
 COPY docker/run.sh /usr/local/bin/run.sh
 RUN chmod +x /usr/local/bin/run.sh
 EXPOSE 23336
