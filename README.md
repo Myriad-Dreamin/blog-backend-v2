@@ -1,2 +1,2 @@
-# blog-backend-v2
-= =
+# minimum-template
+gin extension
