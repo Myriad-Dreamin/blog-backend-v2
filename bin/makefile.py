@@ -173,7 +173,7 @@ class Makefile:
             cls.context['redis-root-password'] = cls.context.get('redis-root-password', '12345678')
             cls.context['mysql-root-password'] = cls.context.get('mysql-root-password', '12345678')
             cls.context['mysql-norm-password'] = cls.context.get('mysql-norm-password', '12345678')
-            
+
             cls.context['conf-path'] = os.path.join(cls.current_path, cls.context.get('conf-path', 'testdb/conf'))
             print('conf-path', cls.context['conf-path'])
             
