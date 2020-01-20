@@ -11,6 +11,7 @@ type Provider struct {
 
 	objectRouter *ObjectRouter
 
+    musicRouter *MusicRouter
     articleRouter *ArticleRouter
 	rootRouter *RootRouter
 	userRouter *UserRouter
@@ -30,6 +31,8 @@ func (s *Provider) Register(name string, router interface{}) {
 		panic(fmt.Errorf("unknown router %T", router))
 	}
 	switch ss := router.(type) {
+    case *MusicRouter:
+        s.musicRouter = ss
     case *ArticleRouter:
         s.articleRouter = ss
 	case *RootRouter:
@@ -46,6 +49,8 @@ func (s *Provider) Replace(name string, router interface{}) {
 		panic(fmt.Errorf("unknown router %T", router))
 	}
 	switch ss := router.(type) {
+    case *MusicRouter:
+        s.musicRouter = ss
     case *ArticleRouter:
         s.articleRouter = ss
 	case *RootRouter:

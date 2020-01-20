@@ -16,6 +16,7 @@ type dbResult struct {
 func (srv *Server) registerDatabaseService() bool {
 
 	for _, dbResult := range []dbResult{
+        {"musicDB", functional.Decay(model.NewMusicDB(srv.Module))},
         {"articleDB", functional.Decay(model.NewArticleDB(srv.Module))},
 		{"userDB", functional.Decay(model.NewUserDB(srv.Module))},
 		{"objectDB", functional.Decay(model.NewObjectDB(srv.Module))},

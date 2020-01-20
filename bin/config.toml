@@ -14,3 +14,4 @@ location="Local"
 
 [base-cfg]
 images-path="/images"
+musics-path="/musics"

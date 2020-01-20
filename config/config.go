@@ -35,6 +35,7 @@ type PathPlaceholder struct {
 type BaseParametersConfig struct {
 	PathPlaceholder PathPlaceholder `json:"path-placeholder" yaml:"path-placeholder" toml:"path-placeholder" xml:"path-placeholder"`
 	ImagesPath string `json:"images-path" yaml:"images-path" toml:"images-path" xml:"images-path"`
+	MusicsPath  string `json:"musics-path" yaml:"musics-path" toml:"musics-path" xml:"musics-path"`
 }
 
 type Label struct {

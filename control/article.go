@@ -2,8 +2,8 @@
 package control
 
 import (
-    "github.com/Myriad-Dreamin/go-model-traits/gorm-crud-dao"
     "github.com/Myriad-Dreamin/blog-backend-v2/model/db-layer"
+    "github.com/Myriad-Dreamin/go-model-traits/gorm-crud-dao"
     "github.com/Myriad-Dreamin/minimum-lib/controller"
 
 )
@@ -33,7 +33,7 @@ type PostArticleRequest struct {
 }
 
 type PostArticleReply struct {
-    Code int `form:"code" json:"code"`
+    Code int `json:"code" form:"code"`
     Article *dblayer.Article `json:"article" form:"article"`
 }
 

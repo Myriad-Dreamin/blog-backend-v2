@@ -13,6 +13,7 @@ type serviceResult struct {
 
 func (srv *Server) PrepareService() bool {
 	for _, serviceResult := range []serviceResult{
+        {"musicService", functional.Decay(service.NewMusicService(srv.Module))},
         {"articleService", functional.Decay(service.NewArticleService(srv.Module))},
 		{"userService", functional.Decay(service.NewUserService(srv.Module))},
 		{"authService", functional.Decay(service.NewAuthService(srv.Module))},

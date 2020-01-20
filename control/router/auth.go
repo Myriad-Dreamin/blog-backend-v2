@@ -28,4 +28,10 @@ func ApplyAuth(router *RootRouter) {
 	aig.Put.Use(ag.Auth.AdminOnly())
 	aig.Delete.Use(ag.Auth.AdminOnly())
 
+	var mg = router.MusicRouter
+	mg.Post.Use(mg.Auth.AdminOnly())
+	var mig = router.MusicRouter.IDRouter
+	mig.Put.Use(mg.Auth.AdminOnly())
+	mig.Delete.Use(mg.Auth.AdminOnly())
+
 }

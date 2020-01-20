@@ -2,10 +2,10 @@
 package control
 
 import (
-    "github.com/Myriad-Dreamin/blog-backend-v2/model/db-layer"
     "github.com/Myriad-Dreamin/minimum-lib/controller"
-    "time"
     "github.com/Myriad-Dreamin/go-model-traits/gorm-crud-dao"
+    "time"
+    "github.com/Myriad-Dreamin/blog-backend-v2/model/db-layer"
 
 )
 
@@ -27,7 +27,7 @@ type UserService interface {
 type ListUsersRequest = gorm_crud_dao.Filter
 
 type ListUsersReply struct {
-    Code int `form:"code" json:"code"`
+    Code int `json:"code" form:"code"`
     Users []ListUserReply `json:"users" form:"users"`
 }
 
@@ -37,27 +37,27 @@ type ListUserReply struct {
 }
 
 type LoginRequest struct {
-    Id uint `json:"id" form:"id"`
+    Id uint `form:"id" json:"id"`
     NickName string `json:"nick_name" form:"nick_name"`
     Phone string `json:"phone" form:"phone"`
-    Password string `json:"password" form:"password" binding:"required"`
+    Password string `binding:"required" json:"password" form:"password"`
 }
 
 type LoginReply struct {
-    Code int `form:"code" json:"code"`
-    Id uint `json:"id" form:"id"`
+    Code int `json:"code" form:"code"`
+    Id uint `form:"id" json:"id"`
     Phone string `json:"phone" form:"phone"`
     NickName string `json:"nick_name" form:"nick_name"`
-    Name string `form:"name" json:"name"`
+    Name string `json:"name" form:"name"`
     Identity []string `json:"identity" form:"identity"`
-    Token string `form:"token" json:"token"`
+    Token string `json:"token" form:"token"`
     RefreshToken string `json:"refresh_token" form:"refresh_token"`
 }
 
 type RegisterRequest struct {
-    Name string `form:"name" binding:"required" json:"name"`
+    Name string `json:"name" form:"name" binding:"required"`
     NickName string `json:"nick_name" form:"nick_name" binding:"required"`
-    Phone string `json:"phone" form:"phone" binding:"required"`
+    Phone string `form:"phone" binding:"required" json:"phone"`
     Password string `json:"password" form:"password" binding:"required"`
 }
 
@@ -68,22 +68,22 @@ type RegisterReply struct {
 
 type ChangePasswordRequest struct {
     OldPassword string `json:"old_password" form:"old_password" binding:"required"`
-    NewPassword string `binding:"required" json:"new_password" form:"new_password"`
+    NewPassword string `json:"new_password" form:"new_password" binding:"required"`
 }
 
 type InspectUserReply struct {
-    Code int `form:"code" json:"code"`
+    Code int `json:"code" form:"code"`
     User *dblayer.User `json:"user" form:"user"`
 }
 
 type GetUserReply struct {
     Code int `json:"code" form:"code"`
     NickName string `json:"nick_name" form:"nick_name"`
-    LastLogin time.Time `form:"last_login" json:"last_login"`
+    LastLogin time.Time `json:"last_login" form:"last_login"`
 }
 
 type PutUserRequest struct {
-    Phone string `form:"phone" json:"phone"`
+    Phone string `json:"phone" form:"phone"`
 }
 func PSerializeListUsersReply(_code int, _users []ListUserReply) *ListUsersReply {
 

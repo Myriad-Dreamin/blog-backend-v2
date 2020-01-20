@@ -1,11 +1,11 @@
 package router
 
 import (
-	"github.com/Myriad-Dreamin/minimum-lib/controller"
-	"github.com/Myriad-Dreamin/minimum-lib/module"
 	"github.com/Myriad-Dreamin/blog-backend-v2/config"
 	"github.com/Myriad-Dreamin/blog-backend-v2/lib/jwt"
 	"github.com/Myriad-Dreamin/blog-backend-v2/service"
+	"github.com/Myriad-Dreamin/minimum-lib/controller"
+	"github.com/Myriad-Dreamin/minimum-lib/module"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -14,7 +14,6 @@ type BaseH struct {
 	*Router
 	AuthRouter *Router
 	Auth       *Middleware
-
 }
 
 func (r *BaseH) GetRouter() *Router {
@@ -34,12 +33,14 @@ type RootRouter struct {
 	Root *Router
 
 	//ObjectRouter *ObjectRouter
-	UserRouter *UserRouter
-	AuthRouter *AuthRouter
+	UserRouter    *UserRouter
+	AuthRouter    *AuthRouter
 	ArticleRouter *ArticleRouter
+	MusicRouter   *MusicRouter
 
-	Ping *LeafRouter
+	Ping   *LeafRouter
 	Images *LeafRouter
+	Musics *LeafRouter
 }
 
 // @title Ping
@@ -73,10 +74,12 @@ func NewRootRouter(m module.Module) (r *RootRouter) {
 
 	r.UserRouter = BuildUserRouter(r, serviceProvider)
 	r.ArticleRouter = BuildArticleRouter(r, serviceProvider)
+	r.MusicRouter = BuildMusicRouter(r, serviceProvider)
 
 	cfg := m.Require(config.ModulePath.Global.Configuration).(*config.ServerConfig)
 
 	r.Images = r.GetRouter().StaticFS("images", http.Dir(cfg.BaseParametersConfig.ImagesPath))
+	r.Musics = r.GetRouter().StaticFS("musics", http.Dir(cfg.BaseParametersConfig.MusicsPath))
 
 	ApplyAuth(r)
 	return

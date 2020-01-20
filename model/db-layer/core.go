@@ -106,6 +106,7 @@ func (m *modelModule) InstallMock(dep module.Module) bool {
 func (modelModule) Migrates() error {
 	return fcg.Calls([]fcg.MaybeInitializer{
 		//migrations
+        Music{}.migrate,
         Article{}.migrate,
 		User{}.migrate,
 	})
@@ -114,6 +115,7 @@ func (modelModule) Migrates() error {
 func (modelModule) Injects() error {
 	return fcg.Calls([]fcg.MaybeInitializer{
 		//injections
+        injectMusicTraits,
         injectArticleTraits,
 		injectUserTraits,
 	})

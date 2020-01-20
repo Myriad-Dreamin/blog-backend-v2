@@ -3,8 +3,8 @@ package control
 
 import (
     "github.com/Myriad-Dreamin/minimum-lib/controller"
-    "github.com/Myriad-Dreamin/blog-backend-v2/model/db-layer"
     "github.com/Myriad-Dreamin/go-model-traits/gorm-crud-dao"
+    "github.com/Myriad-Dreamin/blog-backend-v2/model/db-layer"
 
 )
 
@@ -43,7 +43,7 @@ type InspectObjectReply struct {
 }
 
 type GetObjectReply struct {
-    Code int `form:"code" json:"code"`
+    Code int `json:"code" form:"code"`
     Object *dblayer.Object `json:"object" form:"object"`
 }
 

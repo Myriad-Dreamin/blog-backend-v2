@@ -1,4 +1,4 @@
-package articleservice
+package musicservice
 
 import (
 	"github.com/Myriad-Dreamin/minimum-lib/controller"
@@ -9,17 +9,12 @@ import (
 )
 
 func (svc *Service) SerializePost(c controller.MContext) base_service.CRUDEntity {
-	var req control.PostArticleRequest
+	var req control.PostMusicRequest
 	if !ginhelper.BindRequest(c, &req) {
 		return nil
 	}
 
-	var obj = new(model.Article)
-
-	//Title string `dorm:"title" gorm:"title;not_null"`
-	//Intro string `dorm:"intro" gorm:"intro;type:text;not_null"`
-	//Category string `dorm:"category" gorm:"category;not_null"`
-	//FilePath string `dorm:"file_path" gorm:"file_path;not_null"`
+	var obj = new(model.Music)
 	// fill here
 	return obj
 }
