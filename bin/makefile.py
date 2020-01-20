@@ -78,6 +78,12 @@ def entry(self, args):
 
 
 class Makefile:
+    config_file = None
+    config_file_target = None
+    crt_file = None
+    crt_file_target = None
+    key_file = None
+    key_file_target = None
     current_path = os.path.dirname(os.path.realpath(__file__))
     config_file_name = 'config.toml'
     context = dict()
@@ -142,6 +148,12 @@ class Makefile:
 
     @classmethod
     @require_cls('read_context')
+    def ping(cls, *_):
+        pipe('curl localhost:%s/ping' % (str(cls.context['target-port'])))
+
+
+    @classmethod
+    @require_cls('read_context')
     def template(cls, *_):
         with open(cls.compose_template_file) as f:
             s = f.read().replace('{{redis-root-password}}', cls.context['redis-root-password'])
@@ -149,22 +161,25 @@ class Makefile:
             s = s.replace('{{conf-path}}', cls.context['conf-path'])
             s = s.replace('{{logs-path}}', cls.context['logs-path'])
             s = s.replace('{{data-path}}', cls.context['data-path'])
-            s = s.replace('{{goods-picture-path}}', cls.context['goods-picture-path'])
-            s = s.replace('{{needs-picture-path}}', cls.context['needs-picture-path'])
-            s = s.replace('{{goods-picture-path-target}}', cls.context['goods-picture-path-target'])
-            s = s.replace('{{needs-picture-path-target}}', cls.context['needs-picture-path-target'])
             s = s.replace('{{node-name}}', cls.context['node-name'])
             s = s.replace('{{instance-name}}', cls.context['instance-name'])
             s = s.replace('{{target-port}}', str(cls.context['target-port']))
+            s = s.replace('{{enable-https}}', str(cls.context['enable-https']))
+
             s = s.replace('{{config-file}}', cls.config_file)
             s = s.replace('{{config-file-target}}', cls.config_file_target)
+            s = s.replace('{{crt-file}}', cls.crt_file)
+            s = s.replace('{{crt-file-target}}', cls.crt_file_target)
+            s = s.replace('{{key-file}}', cls.key_file)
+            s = s.replace('{{key-file-target}}', cls.key_file_target)
+
             s = s.replace('{{mysql-norm-password}}', cls.context['mysql-norm-password'])
             with open(cls.compose_file, 'w') as o:
                 o.write(s)
 
     @classmethod
     def read_context(cls, *_):
-        with open('.minimum-lib-env.json', 'r', encoding='utf-8') as f:
+        with open(os.path.abspath('.minimum-lib-env.json'), 'r', encoding='utf-8') as f:
             c = f.read().encode('utf-8')
             cls.context = json.loads('{}' if len(c) == 0 else c)
             cls.context['node-name'] = cls.context.get('node-name', 'myriaddreamin/minimum-blog-backend:alpine')
@@ -175,26 +190,41 @@ class Makefile:
             cls.context['mysql-norm-password'] = cls.context.get('mysql-norm-password', '12345678')
 
             cls.context['conf-path'] = os.path.join(cls.current_path, cls.context.get('conf-path', 'testdb/conf'))
-            print('conf-path', cls.context['conf-path'])
-            
             cls.context['logs-path'] = os.path.join(cls.current_path, cls.context.get('logs-path', 'testdb/logs'))
-            print('logs-path', cls.context['logs-path'])
             cls.context['data-path'] = os.path.join(cls.current_path, cls.context.get('data-path', 'testdb/data'))
-            print('data-path', cls.context['data-path'])
-            cls.context['goods-picture-path'] =\
-                os.path.join(cls.current_path, cls.context.get('goods-picture-path', 'testdb/goods-picture'))
-            cls.context['needs-picture-path'] =\
-                os.path.join(cls.current_path, cls.context.get('needs-picture-path', 'testdb/needs-picture'))
-            cls.context['goods-picture-path-target'] =\
-                os.path.join(cls.current_path, cls.context.get('goods-picture-path-target', '/goods-picture'))
-            cls.context['needs-picture-path-target'] =\
-                os.path.join(cls.current_path, cls.context.get('needs-picture-path-target', '/needs-picture'))
 
             cls.context['target-port'] = cls.context.get('target-port', 23335)
+            cls.context['enable-https'] = cls.context.get('enable-https', False)
 
-            cls.config_file_name = cls.context.get('config-file-name', 'config.toml')
-            cls.config_file = os.path.join(cls.current_path, cls.config_file_name)
-            cls.config_file_target = os.path.join('/', cls.config_file_name)
+            cls.context['config-file-name'] = cls.context.get('config-file-name', 'config.toml')
+            cls.config_file = os.path.abspath(cls.context['config-file-name'])
+            cls.config_file_target = os.path.join('/', cls.context['config-file-name'])
+
+            cls.context['crt-file-name'] = cls.context.get('crt-file-name', 'myd.crt')
+            cls.crt_file = os.path.abspath(cls.context['crt-file-name'])
+            cls.crt_file_target = os.path.join('/', cls.context['crt-file-name'])
+
+            cls.context['key-file-name'] = cls.context.get('key-file-name', 'myd.pri')
+            cls.key_file = os.path.abspath(cls.context['key-file-name'])
+            cls.key_file_target = os.path.join('/', cls.context['key-file-name'])
+
+    @classmethod
+    @require_cls('read_context')
+    def context(cls, *_):
+        print('key            ', 'value')
+        print('conf-path      ', cls.context['conf-path'])
+        print('logs-path      ', cls.context['logs-path'])
+        print('data-path      ', cls.context['data-path'])
+        print('config         ', cls.context['config-file-name'])
+        print('               ', '%s => %s' % (cls.config_file, cls.config_file_target))
+        print('crt            ', cls.context['crt-file-name'])
+        print('               ', '%s => %s' % (cls.crt_file, cls.crt_file_target))
+        print('key            ', cls.context['key-file-name'])
+        print('               ', '%s => %s' % (cls.key_file, cls.key_file_target))
+        print('node-name      ', cls.context['node-name'])
+        print('instance-name  ', cls.context['instance-name'])
+        print('target-port    ', cls.context['target-port'])
+        print('enable-https   ', cls.context['enable-https'])
 
     @classmethod
     @require_cls('read_context')

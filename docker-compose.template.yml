@@ -30,20 +30,24 @@ services:
         ipv4_address: 10.233.234.3
     command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
   server:
-     image: {{node-name}}
-     volumes: 
-       - {{config-file}}:{{config-file-target}}
-       - {{goods-picture-path}}:{{goods-picture-path-target}}
-       - {{needs-picture-path}}:{{needs-picture-path-target}}
-     depends_on:
-       - redis
-       - mysql
-     ports:
-       - "{{target-port}}:23336"
-     networks:
-       backend:
-         ipv4_address: 10.233.234.4
-
+    image: {{node-name}}
+    environment:
+      BLOG_CONFIG: {{config-file-target}}
+      BLOG_HTTPS: '{{enable-https}}'
+      BLOG_KEY_FILE: {{key-file-target}}
+      BLOG_CRT_FILE: {{crt-file-target}}
+    volumes:
+      - {{config-file}}:{{config-file-target}}
+      - {{crt-file}}:{{crt-file-target}}
+      - {{key-file}}:{{key-file-target}}
+    depends_on:
+      - redis
+      - mysql
+    ports:
+      - "{{target-port}}:23336"
+    networks:
+      backend:
+        ipv4_address: 10.233.234.4
 
 networks:
   backend:

@@ -29,7 +29,9 @@ func (srv *Server) PrepareMiddleware() bool {
 	srv.corsMW = cors.New(cors.Config{
 		//AllowAllOrigins: true,
 		AllowOriginFunc:  func(origin string) bool { return true },
-		AllowOrigins:     []string{"http://127.0.0.1:80", "https://127.0.0.1:80"},
+		AllowOrigins:     []string{
+			"http://myriaddreamin.com:80", "https://myriaddreamin.com:80",
+			"http://www.myriaddreamin.com:80", "https://www.myriaddreamin.com:80"},
 		AllowMethods:     []string{"PUT", "PATCH", "GET", "POST", "DELETE"},
 		AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "Authorization"},
 		ExposeHeaders:    []string{"X-Total-Count"},

@@ -21,6 +21,7 @@ import (
 	"os"
 	"sync"
 	"syscall"
+	"net/http"
 )
 
 type Server struct {
@@ -202,7 +203,46 @@ func (srv *Server) Serve(port string) {
 	wg.Wait()
 }
 
-func (srv *Server) ServeWithPProf(port string) {
+func (srv *Server) ServeTLS(port , crtFile, privateKeyFile string) {
+	defer func() {
+		if err := recover(); err != nil {
+			sugar.PrintStack()
+			srv.Logger.Error("panic error", "error", err)
+			srv.Terminate()
+		}
+	}()
+
+	control.BuildHttp(srv.Router.Root, srv.HttpEngine)
+	srv.Module.Debug(srv.Logger)
+
+	ctx, cancel := context.WithCancel(context.Background())
+	defer func() {
+		cancel()
+	}()
+
+	for _, plg := range srv.plugins {
+		go plg.Work(ctx)
+	}
+
+	if err := dblayer.GetRawInstance().Ping(); err != nil {
+		srv.Logger.Debug("database died", "error", err)
+		return
+	}
+
+	var wg sync.WaitGroup
+	wg.Add(1)
+	go func() {
+		if err := http.ListenAndServeTLS(port, crtFile, privateKeyFile, srv.HttpEngine); err != nil {
+			srv.Logger.Debug("IRouter run error", "error", err)
+		}
+		wg.Done()
+	}()
+
+	//do something
+	wg.Wait()
+}
+
+func (srv *Server) WithPProf(port string) *Server {
 	ginpprof.Wrap(srv.HttpEngine)
-	srv.Serve(port)
+	return srv
 }
