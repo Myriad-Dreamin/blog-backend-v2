@@ -3,9 +3,6 @@ package server
 import (
 	"context"
 	"github.com/DeanThompson/ginpprof"
-	"github.com/Myriad-Dreamin/minimum-lib/controller"
-	"github.com/Myriad-Dreamin/minimum-lib/module"
-	"github.com/Myriad-Dreamin/minimum-lib/sugar"
 	"github.com/Myriad-Dreamin/blog-backend-v2/config"
 	"github.com/Myriad-Dreamin/blog-backend-v2/control"
 	"github.com/Myriad-Dreamin/blog-backend-v2/control/router"
@@ -15,13 +12,16 @@ import (
 	dblayer "github.com/Myriad-Dreamin/blog-backend-v2/model/db-layer"
 	"github.com/Myriad-Dreamin/blog-backend-v2/service"
 	"github.com/Myriad-Dreamin/blog-backend-v2/types"
+	"github.com/Myriad-Dreamin/minimum-lib/controller"
+	"github.com/Myriad-Dreamin/minimum-lib/module"
+	"github.com/Myriad-Dreamin/minimum-lib/sugar"
 	"github.com/gin-gonic/gin"
 	"github.com/gomodule/redigo/redis"
 	"io"
+	"net/http"
 	"os"
 	"sync"
 	"syscall"
-	"net/http"
 )
 
 type Server struct {
@@ -203,7 +203,7 @@ func (srv *Server) Serve(port string) {
 	wg.Wait()
 }
 
-func (srv *Server) ServeTLS(port , crtFile, privateKeyFile string) {
+func (srv *Server) ServeTLS(port, crtFile, privateKeyFile string) {
 	defer func() {
 		if err := recover(); err != nil {
 			sugar.PrintStack()

@@ -1,8 +1,8 @@
 package splayer
 
 import (
-	"github.com/Myriad-Dreamin/minimum-lib/module"
 	dblayer "github.com/Myriad-Dreamin/blog-backend-v2/model/db-layer"
+	"github.com/Myriad-Dreamin/minimum-lib/module"
 )
 
 type Music = dblayer.Music

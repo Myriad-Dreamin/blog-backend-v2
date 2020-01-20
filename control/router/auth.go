@@ -21,7 +21,6 @@ func ApplyAuth(router *RootRouter) {
 	uig.Put.Use(uig.Auth.Build(auth.UserEntity.Write()))
 	uig.Delete.Use(uig.Auth.AdminOnly())
 
-
 	var ag = router.ArticleRouter
 	ag.Post.Use(ag.Auth.AdminOnly())
 	var aig = router.ArticleRouter.IDRouter

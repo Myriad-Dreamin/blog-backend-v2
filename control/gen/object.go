@@ -53,6 +53,6 @@ func DescribeObjectService(base string) artisan.ProposingService {
 			Method(artisan.DELETE, "Delete"),
 	}
 	svc.Name("ObjectService").Base(base) //.
-	//UseModel(serial.Model(serial.Name("object"), &objectModel))
+	//UseModel(artisan.Model(artisan.Name("object"), &objectModel))
 	return svc
 }

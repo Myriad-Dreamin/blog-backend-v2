@@ -13,20 +13,20 @@ func main() {
 	v1 := "v1"
 
 	//instantiate
-    musicCate := DescribeMusicService(v1)
-    articleCate := DescribeArticleService(v1)
+	musicCate := DescribeMusicService(v1)
+	articleCate := DescribeArticleService(v1)
 	userCate := DescribeUserService(v1)
 	objectCate := DescribeObjectService(v1)
 
 	//to files
-    musicCate.ToFile("music.go")
-    articleCate.ToFile("article.go")
+	musicCate.ToFile("music.go")
+	articleCate.ToFile("article.go")
 	userCate.ToFile("user.go")
 	objectCate.ToFile("object.go")
 
 	err := artisan.NewService(
-        musicCate,
-        articleCate,
+		musicCate,
+		articleCate,
 		userCate,
 		objectCate,
 	).Publish()

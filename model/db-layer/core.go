@@ -2,12 +2,12 @@ package dblayer
 
 import (
 	"database/sql"
-	"github.com/Myriad-Dreamin/dorm"
-	traits "github.com/Myriad-Dreamin/go-model-traits/example-traits"
-	"github.com/Myriad-Dreamin/minimum-lib/module"
 	"github.com/Myriad-Dreamin/blog-backend-v2/config"
 	"github.com/Myriad-Dreamin/blog-backend-v2/lib/core"
 	"github.com/Myriad-Dreamin/blog-backend-v2/lib/fcg"
+	"github.com/Myriad-Dreamin/dorm"
+	traits "github.com/Myriad-Dreamin/go-model-traits/example-traits"
+	"github.com/Myriad-Dreamin/minimum-lib/module"
 	"github.com/jinzhu/gorm"
 
 	_ "github.com/jinzhu/gorm/dialects/mysql"
@@ -106,8 +106,8 @@ func (m *modelModule) InstallMock(dep module.Module) bool {
 func (modelModule) Migrates() error {
 	return fcg.Calls([]fcg.MaybeInitializer{
 		//migrations
-        Music{}.migrate,
-        Article{}.migrate,
+		Music{}.migrate,
+		Article{}.migrate,
 		User{}.migrate,
 	})
 }
@@ -115,8 +115,8 @@ func (modelModule) Migrates() error {
 func (modelModule) Injects() error {
 	return fcg.Calls([]fcg.MaybeInitializer{
 		//injections
-        injectMusicTraits,
-        injectArticleTraits,
+		injectMusicTraits,
+		injectArticleTraits,
 		injectUserTraits,
 	})
 }

@@ -2,11 +2,11 @@ package plugin
 
 import (
 	"context"
-	"github.com/Myriad-Dreamin/minimum-lib/module"
 	"github.com/Myriad-Dreamin/blog-backend-v2/config"
 	"github.com/Myriad-Dreamin/blog-backend-v2/model"
 	"github.com/Myriad-Dreamin/blog-backend-v2/service"
 	"github.com/Myriad-Dreamin/blog-backend-v2/types"
+	"github.com/Myriad-Dreamin/minimum-lib/module"
 )
 
 type Logger = types.Logger

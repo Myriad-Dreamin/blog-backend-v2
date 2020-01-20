@@ -1,8 +1,8 @@
 package model
 
 import (
-	"github.com/Myriad-Dreamin/minimum-lib/module"
 	splayer "github.com/Myriad-Dreamin/blog-backend-v2/model/sp-layer"
+	"github.com/Myriad-Dreamin/minimum-lib/module"
 )
 
 type Article = splayer.Article

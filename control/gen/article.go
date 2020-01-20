@@ -15,6 +15,7 @@ type ArticleCategories struct {
 
 func DescribeArticleService(base string) artisan.ProposingService {
 	var articleModel = new(model.Article)
+	var _articleModel = new(model.Article)
 	svc := &ArticleCategories{
 		List: artisan.Ink().
 			Path("article-list").
@@ -22,13 +23,16 @@ func DescribeArticleService(base string) artisan.ProposingService {
 				artisan.QT("ListArticlesRequest", model.Filter{}),
 				artisan.Reply(
 					codeField,
-					artisan.ArrayParam(artisan.Param("articles", articleModel)),
+					artisan.ArrayParam(artisan.Param("articles", _articleModel)),
 				),
 			),
 		Post: artisan.Ink().
 			Path("article").
 			Method(artisan.POST, "PostArticle",
-				artisan.Request(),
+				artisan.Request(
+					artisan.SPsC(&articleModel.Title, &articleModel.Intro,
+						&articleModel.Category, &articleModel.FilePath),
+				),
 				artisan.Reply(
 					codeField,
 					artisan.Param("article", &articleModel),
@@ -52,7 +56,7 @@ func DescribeArticleService(base string) artisan.ProposingService {
 				artisan.Request()).
 			Method(artisan.DELETE, "Delete"),
 	}
-	svc.Name("ArticleService").Base(base) //.
-	//UseModel(serial.Model(serial.Name("article"), &articleModel))
+	svc.Name("ArticleService").Base(base).
+		UseModel(artisan.Model(artisan.Name("article"), &articleModel))
 	return svc
 }

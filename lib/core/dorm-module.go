@@ -2,10 +2,10 @@ package mcore
 
 import (
 	"database/sql"
+	"github.com/Myriad-Dreamin/blog-backend-v2/lib/core-cfg"
 	"github.com/Myriad-Dreamin/dorm"
 	"github.com/Myriad-Dreamin/minimum-lib/logger"
 	"github.com/Myriad-Dreamin/minimum-lib/module"
-	"github.com/Myriad-Dreamin/blog-backend-v2/lib/core-cfg"
 )
 
 type DormModule struct {

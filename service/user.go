@@ -1,9 +1,9 @@
 package service
 
 import (
-	"github.com/Myriad-Dreamin/minimum-lib/module"
 	"github.com/Myriad-Dreamin/blog-backend-v2/control"
 	userservice "github.com/Myriad-Dreamin/blog-backend-v2/service/user"
+	"github.com/Myriad-Dreamin/minimum-lib/module"
 )
 
 type UserService = control.UserService

@@ -1,11 +1,11 @@
 package server
 
 import (
-	"github.com/Myriad-Dreamin/minimum-lib/controller"
 	"github.com/Myriad-Dreamin/blog-backend-v2/config"
 	"github.com/Myriad-Dreamin/blog-backend-v2/lib/jwt"
 	ginhelper "github.com/Myriad-Dreamin/blog-backend-v2/service/gin-helper"
 	"github.com/Myriad-Dreamin/blog-backend-v2/types"
+	"github.com/Myriad-Dreamin/minimum-lib/controller"
 	"github.com/gin-contrib/cors"
 	//"github.com/Myriad-Dreamin/gin-middleware/auth/privileger"
 	"strconv"
@@ -28,8 +28,8 @@ func (srv *Server) PrepareMiddleware() bool {
 
 	srv.corsMW = cors.New(cors.Config{
 		//AllowAllOrigins: true,
-		AllowOriginFunc:  func(origin string) bool { return true },
-		AllowOrigins:     []string{
+		AllowOriginFunc: func(origin string) bool { return true },
+		AllowOrigins: []string{
 			"http://myriaddreamin.com:80", "https://myriaddreamin.com:80",
 			"http://www.myriaddreamin.com:80", "https://www.myriaddreamin.com:80"},
 		AllowMethods:     []string{"PUT", "PATCH", "GET", "POST", "DELETE"},

@@ -1,11 +1,11 @@
 package userservice
 
 import (
-	"github.com/Myriad-Dreamin/minimum-lib/controller"
 	"github.com/Myriad-Dreamin/blog-backend-v2/control/auth"
 	base_service "github.com/Myriad-Dreamin/blog-backend-v2/lib/base-service"
 	"github.com/Myriad-Dreamin/blog-backend-v2/lib/serial"
 	"github.com/Myriad-Dreamin/blog-backend-v2/types"
+	"github.com/Myriad-Dreamin/minimum-lib/controller"
 )
 
 type PostRequest struct {

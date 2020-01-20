@@ -2,12 +2,12 @@
 package articleservice
 
 import (
-	"github.com/Myriad-Dreamin/minimum-lib/module"
 	"github.com/Myriad-Dreamin/blog-backend-v2/config"
 	"github.com/Myriad-Dreamin/blog-backend-v2/control"
 	base_service "github.com/Myriad-Dreamin/blog-backend-v2/lib/base-service"
 	"github.com/Myriad-Dreamin/blog-backend-v2/model"
 	"github.com/Myriad-Dreamin/blog-backend-v2/types"
+	"github.com/Myriad-Dreamin/minimum-lib/module"
 )
 
 type Service struct {
