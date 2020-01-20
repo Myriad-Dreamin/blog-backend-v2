@@ -40,6 +40,7 @@ services:
       - {{config-file}}:{{config-file-target}}
       - {{crt-file}}:{{crt-file-target}}
       - {{key-file}}:{{key-file-target}}
+      - /root/images:/images
     depends_on:
       - redis
       - mysql

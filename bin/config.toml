@@ -11,3 +11,6 @@ max-idle=100
 max-active=100
 escaper="`"
 location="Local"
+
+[base-cfg]
+images-path="/images"

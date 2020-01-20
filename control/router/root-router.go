@@ -7,12 +7,14 @@ import (
 	"github.com/Myriad-Dreamin/minimum-template/lib/jwt"
 	"github.com/Myriad-Dreamin/minimum-template/service"
 	"github.com/gin-gonic/gin"
+	"net/http"
 )
 
 type BaseH struct {
 	*Router
 	AuthRouter *Router
 	Auth       *Middleware
+
 }
 
 func (r *BaseH) GetRouter() *Router {
@@ -36,6 +38,7 @@ type RootRouter struct {
 	AuthRouter *AuthRouter
 
 	Ping *LeafRouter
+	Images *LeafRouter
 }
 
 // @title Ping
@@ -68,6 +71,10 @@ func NewRootRouter(m module.Module) (r *RootRouter) {
 	serviceProvider := m.Require(config.ModulePath.Provider.Service).(*service.Provider)
 
 	r.UserRouter = BuildUserRouter(r, serviceProvider)
+
+	cfg := m.Require(config.ModulePath.Global.Configuration).(*config.ServerConfig)
+
+	r.Images = r.GetRouter().StaticFS("images", http.Dir(cfg.BaseParametersConfig.ImagesPath))
 
 	ApplyAuth(r)
 	return
