@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/Myriad-Dreamin/minimum-template/control/auth"
+	"github.com/Myriad-Dreamin/blog-backend-v2/control/auth"
 )
 
 func ApplyAuth(router *RootRouter) {
@@ -20,5 +20,12 @@ func ApplyAuth(router *RootRouter) {
 	uig.ChangePassword.Use(uig.Auth.Build(auth.UserEntity.Write()))
 	uig.Put.Use(uig.Auth.Build(auth.UserEntity.Write()))
 	uig.Delete.Use(uig.Auth.AdminOnly())
+
+
+	var ag = router.ArticleRouter
+	ag.Post.Use(ag.Auth.AdminOnly())
+	var aig = router.ArticleRouter.IDRouter
+	aig.Put.Use(ag.Auth.AdminOnly())
+	aig.Delete.Use(ag.Auth.AdminOnly())
 
 }

@@ -3,8 +3,8 @@ package tests
 import (
 	doc_gen "github.com/Myriad-Dreamin/minimum-lib/generate/doc-gen"
 	"github.com/Myriad-Dreamin/minimum-lib/sugar"
-	"github.com/Myriad-Dreamin/minimum-template/server"
-	"github.com/Myriad-Dreamin/minimum-template/test/tester"
+	"github.com/Myriad-Dreamin/blog-backend-v2/server"
+	"github.com/Myriad-Dreamin/blog-backend-v2/test/tester"
 	"os"
 	"testing"
 )

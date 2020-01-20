@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	"fmt"
-	"github.com/Myriad-Dreamin/minimum-template/server"
+	"github.com/Myriad-Dreamin/blog-backend-v2/server"
 	_ "net/http/pprof"
 	"os"
 	"strings"

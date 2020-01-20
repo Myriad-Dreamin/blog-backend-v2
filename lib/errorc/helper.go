@@ -1,7 +1,7 @@
 package errorc
 
 import (
-	"github.com/Myriad-Dreamin/minimum-template/types"
+	"github.com/Myriad-Dreamin/blog-backend-v2/types"
 	"github.com/go-sql-driver/mysql"
 	"reflect"
 	"strconv"

@@ -2,7 +2,7 @@ package main
 
 import (
 	"github.com/Myriad-Dreamin/artisan"
-	"github.com/Myriad-Dreamin/minimum-template/model"
+	"github.com/Myriad-Dreamin/blog-backend-v2/model"
 )
 
 type ObjectCategories struct {

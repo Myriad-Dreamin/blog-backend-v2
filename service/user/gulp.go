@@ -2,10 +2,10 @@ package userservice
 
 import (
 	"github.com/Myriad-Dreamin/minimum-lib/controller"
-	"github.com/Myriad-Dreamin/minimum-template/control"
-	base_service "github.com/Myriad-Dreamin/minimum-template/lib/base-service"
-	"github.com/Myriad-Dreamin/minimum-template/model"
-	"github.com/Myriad-Dreamin/minimum-template/types"
+	"github.com/Myriad-Dreamin/blog-backend-v2/control"
+	base_service "github.com/Myriad-Dreamin/blog-backend-v2/lib/base-service"
+	"github.com/Myriad-Dreamin/blog-backend-v2/model"
+	"github.com/Myriad-Dreamin/blog-backend-v2/types"
 )
 
 func (srv *Service) CreateEntity(id uint) base_service.CRUDEntity {

@@ -2,7 +2,7 @@ package tests
 
 import (
 	"fmt"
-	"github.com/Myriad-Dreamin/minimum-template/control"
+	"github.com/Myriad-Dreamin/blog-backend-v2/control"
 	"testing"
 )
 

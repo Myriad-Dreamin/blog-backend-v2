@@ -11,6 +11,8 @@ var provider *Provider
 type Provider struct {
 	module.BaseModuler
 	objectDB *ObjectDB
+
+    articleDB *ArticleDB
 	userDB   *UserDB
 	enforcer *Enforcer
 }
@@ -29,6 +31,8 @@ func (s *Provider) Register(name string, database interface{}) {
 	}
 
 	switch ss := database.(type) {
+    case *ArticleDB:
+        s.articleDB = ss
 	case *Enforcer:
 		s.enforcer = ss
 	case *UserDB:

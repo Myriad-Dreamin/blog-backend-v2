@@ -1,7 +1,7 @@
 package router
 
 import (
-	"github.com/Myriad-Dreamin/minimum-template/service"
+	"github.com/Myriad-Dreamin/blog-backend-v2/service"
 )
 
 type ObjectRouter struct {

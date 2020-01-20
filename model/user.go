@@ -2,7 +2,7 @@ package model
 
 import (
 	"github.com/Myriad-Dreamin/minimum-lib/module"
-	splayer "github.com/Myriad-Dreamin/minimum-template/model/sp-layer"
+	splayer "github.com/Myriad-Dreamin/blog-backend-v2/model/sp-layer"
 )
 
 type User = splayer.User

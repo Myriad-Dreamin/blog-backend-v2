@@ -2,7 +2,7 @@ package control
 
 import (
 	"github.com/Myriad-Dreamin/minimum-lib/controller"
-	mgin "github.com/Myriad-Dreamin/minimum-template/lib/gin"
+	mgin "github.com/Myriad-Dreamin/blog-backend-v2/lib/gin"
 	"github.com/gin-gonic/gin"
 )
 

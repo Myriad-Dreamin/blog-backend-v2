@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"github.com/Myriad-Dreamin/functional-go"
 	"github.com/Myriad-Dreamin/minimum-lib/rbac"
-	"github.com/Myriad-Dreamin/minimum-template/config"
-	"github.com/Myriad-Dreamin/minimum-template/model"
+	"github.com/Myriad-Dreamin/blog-backend-v2/config"
+	"github.com/Myriad-Dreamin/blog-backend-v2/model"
 )
 
 type dbResult struct {
@@ -16,6 +16,7 @@ type dbResult struct {
 func (srv *Server) registerDatabaseService() bool {
 
 	for _, dbResult := range []dbResult{
+        {"articleDB", functional.Decay(model.NewArticleDB(srv.Module))},
 		{"userDB", functional.Decay(model.NewUserDB(srv.Module))},
 		{"objectDB", functional.Decay(model.NewObjectDB(srv.Module))},
 	} {

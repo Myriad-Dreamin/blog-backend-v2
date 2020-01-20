@@ -2,8 +2,8 @@ package model
 
 import (
 	"github.com/Myriad-Dreamin/minimum-lib/module"
-	"github.com/Myriad-Dreamin/minimum-template/model/db-layer"
-	"github.com/Myriad-Dreamin/minimum-template/model/sp-layer"
+	"github.com/Myriad-Dreamin/blog-backend-v2/model/db-layer"
+	"github.com/Myriad-Dreamin/blog-backend-v2/model/sp-layer"
 )
 
 func InstallFromContext(dep module.Module) bool {

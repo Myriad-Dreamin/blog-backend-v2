@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Myriad-Dreamin/minimum-template/lib/core-cfg"
+	"github.com/Myriad-Dreamin/blog-backend-v2/lib/core-cfg"
 	"github.com/pelletier/go-toml"
 	"gopkg.in/yaml.v2"
 )

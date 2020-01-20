@@ -3,7 +3,7 @@ package server
 import (
 	"fmt"
 	"github.com/Myriad-Dreamin/functional-go"
-	"github.com/Myriad-Dreamin/minimum-template/service"
+	"github.com/Myriad-Dreamin/blog-backend-v2/service"
 )
 
 type serviceResult struct {
@@ -13,6 +13,7 @@ type serviceResult struct {
 
 func (srv *Server) PrepareService() bool {
 	for _, serviceResult := range []serviceResult{
+        {"articleService", functional.Decay(service.NewArticleService(srv.Module))},
 		{"userService", functional.Decay(service.NewUserService(srv.Module))},
 		{"authService", functional.Decay(service.NewAuthService(srv.Module))},
 		{"objectService", functional.Decay(service.NewObjectService(srv.Module))},

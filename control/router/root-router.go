@@ -3,9 +3,9 @@ package router
 import (
 	"github.com/Myriad-Dreamin/minimum-lib/controller"
 	"github.com/Myriad-Dreamin/minimum-lib/module"
-	"github.com/Myriad-Dreamin/minimum-template/config"
-	"github.com/Myriad-Dreamin/minimum-template/lib/jwt"
-	"github.com/Myriad-Dreamin/minimum-template/service"
+	"github.com/Myriad-Dreamin/blog-backend-v2/config"
+	"github.com/Myriad-Dreamin/blog-backend-v2/lib/jwt"
+	"github.com/Myriad-Dreamin/blog-backend-v2/service"
 	"github.com/gin-gonic/gin"
 	"net/http"
 )
@@ -36,6 +36,7 @@ type RootRouter struct {
 	//ObjectRouter *ObjectRouter
 	UserRouter *UserRouter
 	AuthRouter *AuthRouter
+	ArticleRouter *ArticleRouter
 
 	Ping *LeafRouter
 	Images *LeafRouter
@@ -71,6 +72,7 @@ func NewRootRouter(m module.Module) (r *RootRouter) {
 	serviceProvider := m.Require(config.ModulePath.Provider.Service).(*service.Provider)
 
 	r.UserRouter = BuildUserRouter(r, serviceProvider)
+	r.ArticleRouter = BuildArticleRouter(r, serviceProvider)
 
 	cfg := m.Require(config.ModulePath.Global.Configuration).(*config.ServerConfig)
 

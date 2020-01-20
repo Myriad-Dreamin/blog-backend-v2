@@ -7,9 +7,9 @@ import (
 	"github.com/Myriad-Dreamin/go-magic-package/instance"
 	parser "github.com/Myriad-Dreamin/go-parse-package"
 	"github.com/Myriad-Dreamin/minimum-lib/controller"
-	"github.com/Myriad-Dreamin/minimum-template/control"
-	"github.com/Myriad-Dreamin/minimum-template/lib/serial"
-	"github.com/Myriad-Dreamin/minimum-template/types"
+	"github.com/Myriad-Dreamin/blog-backend-v2/control"
+	"github.com/Myriad-Dreamin/blog-backend-v2/lib/serial"
+	"github.com/Myriad-Dreamin/blog-backend-v2/types"
 	"io"
 	"io/ioutil"
 	"log"
@@ -22,7 +22,7 @@ import (
 	abstract_test "github.com/Myriad-Dreamin/minimum-lib/abstract-test"
 	"github.com/Myriad-Dreamin/minimum-lib/mock"
 	"github.com/Myriad-Dreamin/minimum-lib/sugar"
-	dblayer "github.com/Myriad-Dreamin/minimum-template/model/db-layer"
+	dblayer "github.com/Myriad-Dreamin/blog-backend-v2/model/db-layer"
 	"github.com/stretchr/testify/assert"
 )
 

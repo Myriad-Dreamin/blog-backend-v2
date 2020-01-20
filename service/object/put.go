@@ -2,8 +2,8 @@ package objectservice
 
 import (
 	"github.com/Myriad-Dreamin/minimum-lib/controller"
-	"github.com/Myriad-Dreamin/minimum-template/control"
-	"github.com/Myriad-Dreamin/minimum-template/model"
+	"github.com/Myriad-Dreamin/blog-backend-v2/control"
+	"github.com/Myriad-Dreamin/blog-backend-v2/model"
 )
 
 func (svc *Service) fillPutFields(

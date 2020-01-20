@@ -1,105 +1,110 @@
+
 package control
 
 import (
-	"github.com/Myriad-Dreamin/go-model-traits/gorm-crud-dao"
-	"github.com/Myriad-Dreamin/minimum-lib/controller"
-	"github.com/Myriad-Dreamin/minimum-template/model/db-layer"
-	"time"
+    "github.com/Myriad-Dreamin/blog-backend-v2/model/db-layer"
+    "github.com/Myriad-Dreamin/minimum-lib/controller"
+    "time"
+    "github.com/Myriad-Dreamin/go-model-traits/gorm-crud-dao"
+
 )
 
+var _ controller.MContext
+
+
 type UserService interface {
-	UserServiceSignatureXXX() interface{}
-	ListUsers(c controller.MContext)
-	Login(c controller.MContext)
-	Register(c controller.MContext)
-	ChangePassword(c controller.MContext)
-	InspectUser(c controller.MContext)
-	GetUser(c controller.MContext)
-	PutUser(c controller.MContext)
-	Delete(c controller.MContext)
+    UserServiceSignatureXXX() interface{}
+    ListUsers(c controller.MContext)
+    Login(c controller.MContext)
+    Register(c controller.MContext)
+    ChangePassword(c controller.MContext)
+    InspectUser(c controller.MContext)
+    GetUser(c controller.MContext)
+    PutUser(c controller.MContext)
+    Delete(c controller.MContext)
+
 }
 type ListUsersRequest = gorm_crud_dao.Filter
 
 type ListUsersReply struct {
-	Code  int             `json:"code" form:"code"`
-	Users []ListUserReply `json:"users" form:"users"`
+    Code int `form:"code" json:"code"`
+    Users []ListUserReply `json:"users" form:"users"`
 }
 
 type ListUserReply struct {
-	NickName  string    `json:"nick_name" form:"nick_name"`
-	LastLogin time.Time `form:"last_login" json:"last_login"`
+    NickName string `json:"nick_name" form:"nick_name"`
+    LastLogin time.Time `json:"last_login" form:"last_login"`
 }
 
 type LoginRequest struct {
-	Id       uint   `json:"id" form:"id"`
-	NickName string `json:"nick_name" form:"nick_name"`
-	Phone    string `json:"phone" form:"phone"`
-	Password string `form:"password" binding:"required" json:"password"`
+    Id uint `json:"id" form:"id"`
+    NickName string `json:"nick_name" form:"nick_name"`
+    Phone string `json:"phone" form:"phone"`
+    Password string `json:"password" form:"password" binding:"required"`
 }
 
 type LoginReply struct {
-	Code         int      `json:"code" form:"code"`
-	Id           uint     `json:"id" form:"id"`
-	Phone        string   `json:"phone" form:"phone"`
-	NickName     string   `json:"nick_name" form:"nick_name"`
-	Name         string   `json:"name" form:"name"`
-	Identity     []string `json:"identity" form:"identity"`
-	Token        string   `json:"token" form:"token"`
-	RefreshToken string   `json:"refresh_token" form:"refresh_token"`
+    Code int `form:"code" json:"code"`
+    Id uint `json:"id" form:"id"`
+    Phone string `json:"phone" form:"phone"`
+    NickName string `json:"nick_name" form:"nick_name"`
+    Name string `form:"name" json:"name"`
+    Identity []string `json:"identity" form:"identity"`
+    Token string `form:"token" json:"token"`
+    RefreshToken string `json:"refresh_token" form:"refresh_token"`
 }
 
 type RegisterRequest struct {
-	Name     string `json:"name" form:"name" binding:"required"`
-	NickName string `binding:"required" json:"nick_name" form:"nick_name"`
-	Phone    string `binding:"required" json:"phone" form:"phone"`
-	Password string `json:"password" form:"password" binding:"required"`
+    Name string `form:"name" binding:"required" json:"name"`
+    NickName string `json:"nick_name" form:"nick_name" binding:"required"`
+    Phone string `json:"phone" form:"phone" binding:"required"`
+    Password string `json:"password" form:"password" binding:"required"`
 }
 
 type RegisterReply struct {
-	Code int  `json:"code" form:"code"`
-	Id   uint `json:"id" form:"id"`
+    Code int `json:"code" form:"code"`
+    Id uint `json:"id" form:"id"`
 }
 
 type ChangePasswordRequest struct {
-	OldPassword string `binding:"required" json:"old_password" form:"old_password"`
-	NewPassword string `json:"new_password" form:"new_password" binding:"required"`
+    OldPassword string `json:"old_password" form:"old_password" binding:"required"`
+    NewPassword string `binding:"required" json:"new_password" form:"new_password"`
 }
 
 type InspectUserReply struct {
-	Code int           `json:"code" form:"code"`
-	User *dblayer.User `json:"user" form:"user"`
+    Code int `form:"code" json:"code"`
+    User *dblayer.User `json:"user" form:"user"`
 }
 
 type GetUserReply struct {
-	Code      int       `json:"code" form:"code"`
-	NickName  string    `json:"nick_name" form:"nick_name"`
-	LastLogin time.Time `json:"last_login" form:"last_login"`
+    Code int `json:"code" form:"code"`
+    NickName string `json:"nick_name" form:"nick_name"`
+    LastLogin time.Time `form:"last_login" json:"last_login"`
 }
 
 type PutUserRequest struct {
-	Phone string `json:"phone" form:"phone"`
+    Phone string `form:"phone" json:"phone"`
 }
-
 func PSerializeListUsersReply(_code int, _users []ListUserReply) *ListUsersReply {
 
-	return &ListUsersReply{
-		Code:  _code,
-		Users: _users,
-	}
+    return &ListUsersReply{
+        Code: _code,
+        Users: _users,
+    }
 }
 func SerializeListUsersReply(_code int, _users []ListUserReply) ListUsersReply {
 
-	return ListUsersReply{
-		Code:  _code,
-		Users: _users,
-	}
+    return ListUsersReply{
+        Code: _code,
+        Users: _users,
+    }
 }
 func _packSerializeListUsersReply(_code int, _users []ListUserReply) ListUsersReply {
 
-	return ListUsersReply{
-		Code:  _code,
-		Users: _users,
-	}
+    return ListUsersReply{
+        Code: _code,
+        Users: _users,
+    }
 }
 func PackSerializeListUsersReply(_code []int, _users [][]ListUserReply) (pack []ListUsersReply) {
 	for i := range _code {
@@ -109,24 +114,24 @@ func PackSerializeListUsersReply(_code []int, _users [][]ListUserReply) (pack []
 }
 func PSerializeListUserReply(vUser dblayer.User) *ListUserReply {
 
-	return &ListUserReply{
-		NickName:  vUser.NickName,
-		LastLogin: vUser.LastLogin,
-	}
+    return &ListUserReply{
+        NickName: vUser.NickName,
+        LastLogin: vUser.LastLogin,
+    }
 }
 func SerializeListUserReply(vUser dblayer.User) ListUserReply {
 
-	return ListUserReply{
-		NickName:  vUser.NickName,
-		LastLogin: vUser.LastLogin,
-	}
+    return ListUserReply{
+        NickName: vUser.NickName,
+        LastLogin: vUser.LastLogin,
+    }
 }
 func _packSerializeListUserReply(vUser dblayer.User) ListUserReply {
 
-	return ListUserReply{
-		NickName:  vUser.NickName,
-		LastLogin: vUser.LastLogin,
-	}
+    return ListUserReply{
+        NickName: vUser.NickName,
+        LastLogin: vUser.LastLogin,
+    }
 }
 func PackSerializeListUserReply(vUser []dblayer.User) (pack []ListUserReply) {
 	for i := range vUser {
@@ -136,30 +141,30 @@ func PackSerializeListUserReply(vUser []dblayer.User) (pack []ListUserReply) {
 }
 func PSerializeLoginRequest(user *dblayer.User, _password string) *LoginRequest {
 
-	return &LoginRequest{
-		Id:       user.ID,
-		NickName: user.NickName,
-		Phone:    user.Phone,
-		Password: _password,
-	}
+    return &LoginRequest{
+        Id: user.ID,
+        NickName: user.NickName,
+        Phone: user.Phone,
+        Password: _password,
+    }
 }
 func SerializeLoginRequest(user *dblayer.User, _password string) LoginRequest {
 
-	return LoginRequest{
-		Id:       user.ID,
-		NickName: user.NickName,
-		Phone:    user.Phone,
-		Password: _password,
-	}
+    return LoginRequest{
+        Id: user.ID,
+        NickName: user.NickName,
+        Phone: user.Phone,
+        Password: _password,
+    }
 }
 func _packSerializeLoginRequest(user *dblayer.User, _password string) LoginRequest {
 
-	return LoginRequest{
-		Id:       user.ID,
-		NickName: user.NickName,
-		Phone:    user.Phone,
-		Password: _password,
-	}
+    return LoginRequest{
+        Id: user.ID,
+        NickName: user.NickName,
+        Phone: user.Phone,
+        Password: _password,
+    }
 }
 func PackSerializeLoginRequest(user []*dblayer.User, _password []string) (pack []LoginRequest) {
 	for i := range user {
@@ -169,42 +174,42 @@ func PackSerializeLoginRequest(user []*dblayer.User, _password []string) (pack [
 }
 func PSerializeLoginReply(_code int, user *dblayer.User, _identity []string, _token string, _refreshToken string) *LoginReply {
 
-	return &LoginReply{
-		Code:         _code,
-		Id:           user.ID,
-		Phone:        user.Phone,
-		NickName:     user.NickName,
-		Name:         user.Name,
-		Identity:     _identity,
-		Token:        _token,
-		RefreshToken: _refreshToken,
-	}
+    return &LoginReply{
+        Code: _code,
+        Id: user.ID,
+        Phone: user.Phone,
+        NickName: user.NickName,
+        Name: user.Name,
+        Identity: _identity,
+        Token: _token,
+        RefreshToken: _refreshToken,
+    }
 }
 func SerializeLoginReply(_code int, user *dblayer.User, _identity []string, _token string, _refreshToken string) LoginReply {
 
-	return LoginReply{
-		Code:         _code,
-		Id:           user.ID,
-		Phone:        user.Phone,
-		NickName:     user.NickName,
-		Name:         user.Name,
-		Identity:     _identity,
-		Token:        _token,
-		RefreshToken: _refreshToken,
-	}
+    return LoginReply{
+        Code: _code,
+        Id: user.ID,
+        Phone: user.Phone,
+        NickName: user.NickName,
+        Name: user.Name,
+        Identity: _identity,
+        Token: _token,
+        RefreshToken: _refreshToken,
+    }
 }
 func _packSerializeLoginReply(_code int, user *dblayer.User, _identity []string, _token string, _refreshToken string) LoginReply {
 
-	return LoginReply{
-		Code:         _code,
-		Id:           user.ID,
-		Phone:        user.Phone,
-		NickName:     user.NickName,
-		Name:         user.Name,
-		Identity:     _identity,
-		Token:        _token,
-		RefreshToken: _refreshToken,
-	}
+    return LoginReply{
+        Code: _code,
+        Id: user.ID,
+        Phone: user.Phone,
+        NickName: user.NickName,
+        Name: user.Name,
+        Identity: _identity,
+        Token: _token,
+        RefreshToken: _refreshToken,
+    }
 }
 func PackSerializeLoginReply(_code []int, user []*dblayer.User, _identity [][]string, _token []string, _refreshToken []string) (pack []LoginReply) {
 	for i := range _code {
@@ -214,30 +219,30 @@ func PackSerializeLoginReply(_code []int, user []*dblayer.User, _identity [][]st
 }
 func PSerializeRegisterRequest(user *dblayer.User, _password string) *RegisterRequest {
 
-	return &RegisterRequest{
-		Name:     user.Name,
-		NickName: user.NickName,
-		Phone:    user.Phone,
-		Password: _password,
-	}
+    return &RegisterRequest{
+        Name: user.Name,
+        NickName: user.NickName,
+        Phone: user.Phone,
+        Password: _password,
+    }
 }
 func SerializeRegisterRequest(user *dblayer.User, _password string) RegisterRequest {
 
-	return RegisterRequest{
-		Name:     user.Name,
-		NickName: user.NickName,
-		Phone:    user.Phone,
-		Password: _password,
-	}
+    return RegisterRequest{
+        Name: user.Name,
+        NickName: user.NickName,
+        Phone: user.Phone,
+        Password: _password,
+    }
 }
 func _packSerializeRegisterRequest(user *dblayer.User, _password string) RegisterRequest {
 
-	return RegisterRequest{
-		Name:     user.Name,
-		NickName: user.NickName,
-		Phone:    user.Phone,
-		Password: _password,
-	}
+    return RegisterRequest{
+        Name: user.Name,
+        NickName: user.NickName,
+        Phone: user.Phone,
+        Password: _password,
+    }
 }
 func PackSerializeRegisterRequest(user []*dblayer.User, _password []string) (pack []RegisterRequest) {
 	for i := range user {
@@ -247,24 +252,24 @@ func PackSerializeRegisterRequest(user []*dblayer.User, _password []string) (pac
 }
 func PSerializeRegisterReply(_code int, user *dblayer.User) *RegisterReply {
 
-	return &RegisterReply{
-		Code: _code,
-		Id:   user.ID,
-	}
+    return &RegisterReply{
+        Code: _code,
+        Id: user.ID,
+    }
 }
 func SerializeRegisterReply(_code int, user *dblayer.User) RegisterReply {
 
-	return RegisterReply{
-		Code: _code,
-		Id:   user.ID,
-	}
+    return RegisterReply{
+        Code: _code,
+        Id: user.ID,
+    }
 }
 func _packSerializeRegisterReply(_code int, user *dblayer.User) RegisterReply {
 
-	return RegisterReply{
-		Code: _code,
-		Id:   user.ID,
-	}
+    return RegisterReply{
+        Code: _code,
+        Id: user.ID,
+    }
 }
 func PackSerializeRegisterReply(_code []int, user []*dblayer.User) (pack []RegisterReply) {
 	for i := range _code {
@@ -274,24 +279,24 @@ func PackSerializeRegisterReply(_code []int, user []*dblayer.User) (pack []Regis
 }
 func PSerializeChangePasswordRequest(_oldPassword string, _newPassword string) *ChangePasswordRequest {
 
-	return &ChangePasswordRequest{
-		OldPassword: _oldPassword,
-		NewPassword: _newPassword,
-	}
+    return &ChangePasswordRequest{
+        OldPassword: _oldPassword,
+        NewPassword: _newPassword,
+    }
 }
 func SerializeChangePasswordRequest(_oldPassword string, _newPassword string) ChangePasswordRequest {
 
-	return ChangePasswordRequest{
-		OldPassword: _oldPassword,
-		NewPassword: _newPassword,
-	}
+    return ChangePasswordRequest{
+        OldPassword: _oldPassword,
+        NewPassword: _newPassword,
+    }
 }
 func _packSerializeChangePasswordRequest(_oldPassword string, _newPassword string) ChangePasswordRequest {
 
-	return ChangePasswordRequest{
-		OldPassword: _oldPassword,
-		NewPassword: _newPassword,
-	}
+    return ChangePasswordRequest{
+        OldPassword: _oldPassword,
+        NewPassword: _newPassword,
+    }
 }
 func PackSerializeChangePasswordRequest(_oldPassword []string, _newPassword []string) (pack []ChangePasswordRequest) {
 	for i := range _oldPassword {
@@ -301,24 +306,24 @@ func PackSerializeChangePasswordRequest(_oldPassword []string, _newPassword []st
 }
 func PSerializeInspectUserReply(_code int, _user *dblayer.User) *InspectUserReply {
 
-	return &InspectUserReply{
-		Code: _code,
-		User: _user,
-	}
+    return &InspectUserReply{
+        Code: _code,
+        User: _user,
+    }
 }
 func SerializeInspectUserReply(_code int, _user *dblayer.User) InspectUserReply {
 
-	return InspectUserReply{
-		Code: _code,
-		User: _user,
-	}
+    return InspectUserReply{
+        Code: _code,
+        User: _user,
+    }
 }
 func _packSerializeInspectUserReply(_code int, _user *dblayer.User) InspectUserReply {
 
-	return InspectUserReply{
-		Code: _code,
-		User: _user,
-	}
+    return InspectUserReply{
+        Code: _code,
+        User: _user,
+    }
 }
 func PackSerializeInspectUserReply(_code []int, _user []*dblayer.User) (pack []InspectUserReply) {
 	for i := range _code {
@@ -328,27 +333,27 @@ func PackSerializeInspectUserReply(_code []int, _user []*dblayer.User) (pack []I
 }
 func PSerializeGetUserReply(_code int, user *dblayer.User) *GetUserReply {
 
-	return &GetUserReply{
-		Code:      _code,
-		NickName:  user.NickName,
-		LastLogin: user.LastLogin,
-	}
+    return &GetUserReply{
+        Code: _code,
+        NickName: user.NickName,
+        LastLogin: user.LastLogin,
+    }
 }
 func SerializeGetUserReply(_code int, user *dblayer.User) GetUserReply {
 
-	return GetUserReply{
-		Code:      _code,
-		NickName:  user.NickName,
-		LastLogin: user.LastLogin,
-	}
+    return GetUserReply{
+        Code: _code,
+        NickName: user.NickName,
+        LastLogin: user.LastLogin,
+    }
 }
 func _packSerializeGetUserReply(_code int, user *dblayer.User) GetUserReply {
 
-	return GetUserReply{
-		Code:      _code,
-		NickName:  user.NickName,
-		LastLogin: user.LastLogin,
-	}
+    return GetUserReply{
+        Code: _code,
+        NickName: user.NickName,
+        LastLogin: user.LastLogin,
+    }
 }
 func PackSerializeGetUserReply(_code []int, user []*dblayer.User) (pack []GetUserReply) {
 	for i := range _code {
@@ -358,21 +363,21 @@ func PackSerializeGetUserReply(_code []int, user []*dblayer.User) (pack []GetUse
 }
 func PSerializePutUserRequest(user *dblayer.User) *PutUserRequest {
 
-	return &PutUserRequest{
-		Phone: user.Phone,
-	}
+    return &PutUserRequest{
+        Phone: user.Phone,
+    }
 }
 func SerializePutUserRequest(user *dblayer.User) PutUserRequest {
 
-	return PutUserRequest{
-		Phone: user.Phone,
-	}
+    return PutUserRequest{
+        Phone: user.Phone,
+    }
 }
 func _packSerializePutUserRequest(user *dblayer.User) PutUserRequest {
 
-	return PutUserRequest{
-		Phone: user.Phone,
-	}
+    return PutUserRequest{
+        Phone: user.Phone,
+    }
 }
 func PackSerializePutUserRequest(user []*dblayer.User) (pack []PutUserRequest) {
 	for i := range user {

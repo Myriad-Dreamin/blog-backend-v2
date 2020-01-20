@@ -1,8 +1,8 @@
 package server
 
 import (
-	"github.com/Myriad-Dreamin/minimum-template/config"
-	"github.com/Myriad-Dreamin/minimum-template/control/router"
+	"github.com/Myriad-Dreamin/blog-backend-v2/config"
+	"github.com/Myriad-Dreamin/blog-backend-v2/control/router"
 	"github.com/gin-gonic/gin"
 )
 

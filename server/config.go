@@ -1,6 +1,6 @@
 package server
 
-import "github.com/Myriad-Dreamin/minimum-template/config"
+import "github.com/Myriad-Dreamin/blog-backend-v2/config"
 
 func (srv *Server) LoadConfig(cfgPath string) bool {
 	srv.Cfg = config.Default()

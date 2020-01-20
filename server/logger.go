@@ -3,7 +3,7 @@ package server
 import (
 	"fmt"
 	"github.com/Myriad-Dreamin/minimum-lib/logger"
-	"github.com/Myriad-Dreamin/minimum-template/config"
+	"github.com/Myriad-Dreamin/blog-backend-v2/config"
 	"go.uber.org/zap/zapcore"
 )
 

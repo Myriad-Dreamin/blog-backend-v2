@@ -4,5 +4,5 @@ package service
 import docs "github.com/Myriad-Dreamin/go-magic-package/instance"
 
 func init() {
-	docs.Register("github.com/Myriad-Dreamin/minimum-template/service", "/home/kamiyoru/work/gosrc/src/github.com/Myriad-Dreamin/minimum-template/service")
+	docs.Register("github.com/Myriad-Dreamin/blog-backend-v2/service", "/home/kamiyoru/work/gosrc/src/github.com/Myriad-Dreamin/blog-backend-v2/service")
 }

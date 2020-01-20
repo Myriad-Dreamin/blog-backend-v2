@@ -1,7 +1,7 @@
 package tests
 
 import (
-	"github.com/Myriad-Dreamin/minimum-template/test/tester"
+	"github.com/Myriad-Dreamin/blog-backend-v2/test/tester"
 	"testing"
 )
 

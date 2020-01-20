@@ -2,7 +2,7 @@ package base_service
 
 import (
 	"github.com/Myriad-Dreamin/minimum-lib/controller"
-	ginhelper "github.com/Myriad-Dreamin/minimum-template/service/gin-helper"
+	ginhelper "github.com/Myriad-Dreamin/blog-backend-v2/service/gin-helper"
 	"net/http"
 )
 

@@ -2,10 +2,10 @@ package server
 
 import (
 	"github.com/Myriad-Dreamin/minimum-lib/controller"
-	"github.com/Myriad-Dreamin/minimum-template/config"
-	"github.com/Myriad-Dreamin/minimum-template/lib/jwt"
-	ginhelper "github.com/Myriad-Dreamin/minimum-template/service/gin-helper"
-	"github.com/Myriad-Dreamin/minimum-template/types"
+	"github.com/Myriad-Dreamin/blog-backend-v2/config"
+	"github.com/Myriad-Dreamin/blog-backend-v2/lib/jwt"
+	ginhelper "github.com/Myriad-Dreamin/blog-backend-v2/service/gin-helper"
+	"github.com/Myriad-Dreamin/blog-backend-v2/types"
 	"github.com/gin-contrib/cors"
 	//"github.com/Myriad-Dreamin/gin-middleware/auth/privileger"
 	"strconv"
