@@ -15,11 +15,10 @@ func (svc *Service) SerializePost(c controller.MContext) base_service.CRUDEntity
 	}
 
 	var obj = new(model.Article)
-
-	//Title string `dorm:"title" gorm:"title;not_null"`
-	//Intro string `dorm:"intro" gorm:"intro;type:text;not_null"`
-	//Category string `dorm:"category" gorm:"category;not_null"`
-	//FilePath string `dorm:"file_path" gorm:"file_path;not_null"`
+	obj.Title = req.Title
+	obj.Intro = req.Intro
+	obj.Category = req.Category
+	obj.FilePath = req.FilePath
 	// fill here
 	return obj
 }

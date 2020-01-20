@@ -24,14 +24,14 @@ func wrapToArticle(article interface{}, err error) (*Article, error) {
 }
 
 type Article struct {
-	ID        uint      `dorm:"id" gorm:"column:id;primary_key;not_null"`
+	ID        uint      `dorm:"id" gorm:"column:id;primary_key;not_null" json:"id"`
 	CreatedAt time.Time `dorm:"created_at" gorm:"column:created_at;default:CURRENT_TIMESTAMP;not null" json:"created_at"`
 	UpdatedAt time.Time `dorm:"updated_at" gorm:"column:updated_at;default:CURRENT_TIMESTAMP;not null;" json:"updated_at"`
 
-	Title    string `dorm:"title" gorm:"title;not_null"`
-	Intro    string `dorm:"intro" gorm:"intro;type:text;not_null"`
-	Category string `dorm:"category" gorm:"category;not_null"`
-	FilePath string `dorm:"file_path" gorm:"file_path;not_null"`
+	Title    string `dorm:"title" gorm:"title;not_null" json:"title"`
+	Intro    string `dorm:"intro" gorm:"intro;type:text;not_null" json:"intro"`
+	Category string `dorm:"category" gorm:"category;not_null" json:"category"`
+	FilePath string `dorm:"file_path" gorm:"file_path;not_null" json:"file_path"`
 }
 
 // TableName specification
