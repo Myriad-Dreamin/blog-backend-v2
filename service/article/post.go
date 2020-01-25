@@ -18,7 +18,7 @@ func (svc *Service) SerializePost(c controller.MContext) base_service.CRUDEntity
 	obj.Title = req.Title
 	obj.Intro = req.Intro
 	obj.Category = req.Category
-	obj.FilePath = req.FilePath
+	obj.PublishedAt = req.PublishedAt
 	// fill here
 	return obj
 }

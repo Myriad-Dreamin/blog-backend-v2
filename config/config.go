@@ -36,6 +36,7 @@ type BaseParametersConfig struct {
 	PathPlaceholder PathPlaceholder `json:"path-placeholder" yaml:"path-placeholder" toml:"path-placeholder" xml:"path-placeholder"`
 	ImagesPath      string          `json:"images-path" yaml:"images-path" toml:"images-path" xml:"images-path"`
 	MusicsPath      string          `json:"musics-path" yaml:"musics-path" toml:"musics-path" xml:"musics-path"`
+	ArticlesPath    string          `json:"articles-path" yaml:"articles-path" toml:"articles-path" xml:"articles-path"`
 }
 
 type Label struct {
@@ -65,7 +66,9 @@ func Default() *ServerConfig {
 			PathPlaceholder: PathPlaceholder{
 				User: "id",
 			},
-			ImagesPath: "/images",
+			ImagesPath:   "/images",
+			MusicsPath:   "/musics",
+			ArticlesPath: "/articles",
 		},
 	}
 }

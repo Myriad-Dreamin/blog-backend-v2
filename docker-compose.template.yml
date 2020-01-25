@@ -41,6 +41,8 @@ services:
       - {{crt-file}}:{{crt-file-target}}
       - {{key-file}}:{{key-file-target}}
       - /root/images:/images
+      - /root/musics:/musics
+      - /root/articles:/articles
     depends_on:
       - redis
       - mysql

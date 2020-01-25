@@ -7,10 +7,12 @@ import (
 
 type ArticleCategories struct {
 	artisan.VirtualService
-	List    artisan.Category
-	Post    artisan.Category
-	Inspect artisan.Category
-	IdGroup artisan.Category
+	List        artisan.Category
+	Post        artisan.Category
+	PutContent artisan.Category
+	GetContent  artisan.Category
+	Inspect     artisan.Category
+	IdGroup     artisan.Category
 }
 
 func DescribeArticleService(base string) artisan.ProposingService {
@@ -31,12 +33,16 @@ func DescribeArticleService(base string) artisan.ProposingService {
 			Method(artisan.POST, "PostArticle",
 				artisan.Request(
 					artisan.SPsC(&articleModel.Title, &articleModel.Intro,
-						&articleModel.Category, &articleModel.FilePath),
+						&articleModel.Category, &articleModel.PublishedAt),
 				),
 				artisan.Reply(
 					codeField,
 					artisan.Param("article", &articleModel),
 				),
+			),
+		PutContent: artisan.Ink().
+			Path("article/:aid/content").
+			Method(artisan.PUT, "PutArticleContent",
 			),
 		Inspect: artisan.Ink().Path("article/:aid/inspect").
 			Method(artisan.GET, "InspectArticle",

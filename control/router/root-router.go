@@ -38,9 +38,10 @@ type RootRouter struct {
 	ArticleRouter *ArticleRouter
 	MusicRouter   *MusicRouter
 
-	Ping   *LeafRouter
-	Images *LeafRouter
-	Musics *LeafRouter
+	Ping     *LeafRouter
+	Images   *LeafRouter
+	Musics   *LeafRouter
+	Articles *LeafRouter
 }
 
 // @title Ping
@@ -80,6 +81,7 @@ func NewRootRouter(m module.Module) (r *RootRouter) {
 
 	r.Images = r.GetRouter().StaticFS("images", http.Dir(cfg.BaseParametersConfig.ImagesPath))
 	r.Musics = r.GetRouter().StaticFS("musics", http.Dir(cfg.BaseParametersConfig.MusicsPath))
+	r.Articles = r.GetRouter().StaticFS("articles", http.Dir(cfg.BaseParametersConfig.ArticlesPath))
 
 	ApplyAuth(r)
 	return
