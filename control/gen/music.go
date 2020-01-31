@@ -28,7 +28,14 @@ func DescribeMusicService(base string) artisan.ProposingService {
 		Post: artisan.Ink().
 			Path("music").
 			Method(artisan.POST, "PostMusic",
-				artisan.Request(),
+				artisan.Request(
+					artisan.SPsC(
+						&musicModel.RecommendType, &musicModel.Category,
+						&musicModel.Title, &musicModel.Artist,
+						&musicModel.TrackName, &musicModel.ReferenceID,
+						&musicModel.Comment,
+					),
+				),
 				artisan.Reply(
 					codeField,
 					artisan.Param("music", &musicModel),
@@ -52,7 +59,7 @@ func DescribeMusicService(base string) artisan.ProposingService {
 				artisan.Request()).
 			Method(artisan.DELETE, "Delete"),
 	}
-	svc.Name("MusicService").Base(base) //.
-	//UseModel(serial.Model(serial.Name("music"), &musicModel))
+	svc.Name("MusicService").Base(base).
+		UseModel(artisan.Model(artisan.Name("music"), &musicModel))
 	return svc
 }

@@ -25,8 +25,8 @@ func (svc *Service) PutContent(c controller.MContext) {
 	file, err := c.FormFile("upload")
 	if err != nil {
 		c.JSON(http.StatusOK, serial.ErrorSerializer{
-			Code: types.CodeUploadFileError,
-			Error:  err.Error(),
+			Code:  types.CodeUploadFileError,
+			Error: err.Error(),
 		})
 		return
 	}
@@ -34,10 +34,10 @@ func (svc *Service) PutContent(c controller.MContext) {
 	if err = c.SaveUploadedFile(file,
 		filepath.Join(
 			svc.cfg.BaseParametersConfig.ArticlesPath,
-			strconv.Itoa(int(id)) + ".md")); err != nil {
+			strconv.Itoa(int(id))+".md")); err != nil {
 		c.JSON(http.StatusOK, serial.ErrorSerializer{
-			Code: types.CodeFSExecError,
-			Error:  err.Error(),
+			Code:  types.CodeFSExecError,
+			Error: err.Error(),
 		})
 		return
 	}
@@ -49,5 +49,3 @@ func (svc *Service) PutContent(c controller.MContext) {
 
 	c.JSON(http.StatusOK, &ginhelper.ResponseOK)
 }
-
-

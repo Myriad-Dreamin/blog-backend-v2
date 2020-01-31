@@ -16,6 +16,13 @@ func (svc *Service) SerializePost(c controller.MContext) base_service.CRUDEntity
 
 	var obj = new(model.Music)
 	// fill here
+	obj.RecommendType = req.RecommendType
+	obj.Category = req.Category
+	obj.Title = req.Title
+	obj.Artist = req.Artist
+	obj.ReferenceID = req.ReferenceID
+	obj.TrackName = req.TrackName
+	obj.Comment = req.Comment
 	return obj
 }
 

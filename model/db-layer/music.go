@@ -24,9 +24,17 @@ func wrapToMusic(music interface{}, err error) (*Music, error) {
 }
 
 type Music struct {
-	ID        uint      `dorm:"id" gorm:"column:id;primary_key;not_null"`
+	ID        uint      `dorm:"id" gorm:"column:id;primary_key;not_null" json:"id"`
 	CreatedAt time.Time `dorm:"created_at" gorm:"column:created_at;default:CURRENT_TIMESTAMP;not null" json:"created_at"`
 	UpdatedAt time.Time `dorm:"updated_at" gorm:"column:updated_at;default:CURRENT_TIMESTAMP;not null;" json:"updated_at"`
+
+	RecommendType int    `dorm:"recommend_type" gorm:"column:recommend_type;not_null" json:"recommend_type"`
+	Category      string `dorm:"category" gorm:"column:category;not_null" json:"category"`
+	Title         string `dorm:"title" gorm:"column:title;not_null" json:"title"`
+	Artist        string `dorm:"artist" gorm:"column:artist;not_null" json:"artist"`
+	TrackName     string `dorm:"track_name" gorm:"column:track_name;not_null" json:"track_name"`
+	ReferenceID   string `dorm:"reference_id" gorm:"column:reference_id;not_null" json:"reference_id"`
+	Comment       string `dorm:"comment" gorm:"column:comment;type:text;not_null" json:"comment"`
 }
 
 // TableName specification
