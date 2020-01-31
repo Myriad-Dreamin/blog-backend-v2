@@ -11,7 +11,7 @@ import (
 	"time"
 )
 
-func (svc *Service) PutContent(c controller.MContext) {
+func (svc *Service) PutArticleContent(c controller.MContext) {
 	id, ok := ginhelper.ParseUint(c, svc.key)
 	if !ok {
 		return

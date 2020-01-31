@@ -15,6 +15,7 @@ type MusicCategories struct {
 
 func DescribeMusicService(base string) artisan.ProposingService {
 	var musicModel = new(model.Music)
+	var _musicModel = new(model.Music)
 	svc := &MusicCategories{
 		List: artisan.Ink().
 			Path("music-list").
@@ -22,7 +23,7 @@ func DescribeMusicService(base string) artisan.ProposingService {
 				artisan.QT("ListMusicsRequest", model.Filter{}),
 				artisan.Reply(
 					codeField,
-					artisan.ArrayParam(artisan.Param("musics", musicModel)),
+					artisan.ArrayParam(artisan.Param("musics", _musicModel)),
 				),
 			),
 		Post: artisan.Ink().
